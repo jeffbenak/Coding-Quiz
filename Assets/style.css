@@ -34,7 +34,7 @@ p {
 }
 
 #question1 {
-    text-align: center;
+    padding-left: 527px;
     font-size: 30px;
     font-weight: bold;
     line-height: 0px;
@@ -43,6 +43,69 @@ p {
     font-size: 30px;
     font-weight: bold;
     line-height: 5px;
+    padding-left: 527px;
+}
+
+#question3 {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 0px;
+    padding-left: 527px;
+}
+
+#question4 {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 20px;
+    padding-left: 527px;
+}
+
+#question5 {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 20px;
+    padding-left: 527px;
+}
+
+#question6 {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 0px;
+    padding-left: 527px;
+}
+
+#question7 {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 0px;
+    padding-left: 527px;
+}
+
+#question8 {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 0px;
+    padding-left: 527px;
+}
+
+#question9 {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 0px;
+    padding-left: 527px;
+}
+
+#question10 {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 0px;
+    padding-left: 527px;
+}
+
+#question11 {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 0px;
     padding-left: 527px;
 }
 
