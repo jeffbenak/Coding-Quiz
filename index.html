@@ -4,7 +4,7 @@
 <title>Coding Quiz</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="./assets/style.css" />
+    <link rel="stylesheet" type="text/css" href="./Assets/style.css" />
 </head>
 <body>
     <header>
@@ -38,28 +38,42 @@
     <h3 id="question9"></h3>
     <h3 id="question10"></h3>
     <h3 id="question11"></h3>
+    <!-- Create four buttons for each answer choice -->
     <button class="answers" id="button1"></button> 
     <button class="answers" id="button2"></button>
     <button class="answers" id="button3"></button>
     <button class="answers" id="button4"></button>
 
-    
     </section>
 
+<section>
 
+    <div class="endscreen"></div>
+
+    <div id="finalscore"></div>
+    <input type="text" id="text" class="input">
+    <button type="button" id="button" class="submit">Submit</button>
+    <div class="initials"></div>
+    <div class="highscores"></div>
+    <div class="userscore"></div>
+
+
+</section>
 
     <div class="word-blanks"></div>
+    <form id="score-form" method="POST"></form>
+    <p><span id="score-count"></span></p>
+    <ul id="highscorelist"></ul>
+    
+
 
 </main>
 
 
-<div class="right-answer"></div>
-
-<div class="wrong-answer"></div>
 </body>
 
 
 
-<script src="assets/script.js"></script>
+<script src="Assets/script.js"></script>
 
 </html>

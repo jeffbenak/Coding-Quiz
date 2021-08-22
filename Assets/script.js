@@ -1,11 +1,12 @@
+// Global variables
 var startButton = document.querySelector(".start-button");
 var timerElement = document.querySelector(".timer-count");
 var headerTitle = document.querySelector(".header-title");
 var paragraphElement = document.querySelector(".paragraph");
 var answerButtons = document.querySelector(".answers");
 var wordBlank = document.querySelector(".word-blanks");
-var rightAnswer = document.querySelector(".right-answer");
-var wrongAnswer = document.querySelector(".wrong-answer");
+var endScreen = document.querySelector(".endscreen");
+var finalScore = document.querySelector("#finalscore");
 var firstQuestion = document.querySelector("#question1");
 var question1 = document.querySelector("#question2");
 var secondQuestion = document.querySelector("#question3");
@@ -17,54 +18,93 @@ var question4 = document.querySelector('#question8');
 var fifthQuestion = document.querySelector("#question9");
 var question5 = document.querySelector('#question10');
 var question5b = document.querySelector('#question11');
+var submitBtn = document.querySelector(".submit");
+var enterInitials = document.querySelector(".initials");
+var enterHighScore = document.querySelector(".highscores");
+var displayScore = document.querySelector(".userscore");
+var userInitials = document.querySelector("#text");
+var scoreList = document.querySelector("#highscorelist");
+var scoreForm = document.querySelector("#score-form");
+var scoreCount = document.querySelector("#score-count");
 
 
 
 var timerCount = 75;
 var timer;
-var questionCounter = 0;
+var Counter = 0;
+var timeLeft; 
+var scores = [];
+
+window.onload = function() {
+    document.getElementById('button').style.display = 'none';
+    document.getElementById('text').style.display = 'none';
+    document.getElementById('button1').style.display = 'none';
+    document.getElementById('button2').style.display = 'none';
+    document.getElementById('button3').style.display = 'none';
+    document.getElementById('button4').style.display = 'none';
+
+  };
 
 
-function startGame() {
-    answerButtons.classList.add('hide');
+
+function startQuiz() {
     headerTitle.classList.add('hide');
     startButton.classList.add('hide');
     paragraphElement.classList.add('hide');
-    // Start timer when start game button is clicked
+    document.getElementById('button1').style.display = 'block';
+    document.getElementById('button2').style.display = 'block';
+    document.getElementById('button3').style.display = 'block';
+    document.getElementById('button4').style.display = 'block';
+    // Call the timer function when the quiz is started
     startTimer();
-    // Immediately display the first question of the quiz when it is started
+    // Call the first question function when the quiz starts
     setFirstQuestion();
+}
 
 
 
+
+function setScore() {
+    var setScore = timerCount;
+    finalScore.textContent = "Your final score is " + setScore + ".";
+    enterInitials.textContent = "Enter Initials:";
+    document.getElementById('button').style.display = 'inline';
+    document.getElementById('text').style.display = 'inline';
 
 
 }
 
-function winGame () {
-    wordBlank.textContent = "All done";
-  setScore();
-
+function passQuiz() {
+    fifthQuestion.classList.add('hide');
+    question5.classList.add('hide');
+    question5b.classList.add('hide');
+    button1.style.visibility = 'hidden';
+    button2.style.visibility = 'hidden';
+    button3.style.visibility = 'hidden';
+    button4.style.visibility = 'hidden';
+    endScreen.textContent = "All done!";
+    clearInterval(timer);
+    setScore();
 }
 
-function loseGame () {
+
+function loseGame() {
     wordBlank.textContent = "Game over";
 
 }
-
-function startTimer () {
+// Add a timer function
+function startTimer() {
     timer = setInterval(function() {
         timerCount--;
         timerElement.textContent = timerCount;
         if (timerCount <= 0) {
             clearInterval(timer)
-            // winGame();
         }
         
     }, 1000);   
 }
 
-function setFirstQuestion () {
+function setFirstQuestion() {
     // Display the first question of the quiz
     firstQuestion.textContent = "Commonly used data types DO NOT";
     question1.textContent = "include:";
@@ -93,7 +133,7 @@ function setFirstQuestion () {
 }
 
 // Added two IDs for text aligning purposes
-function setSecondQuestion () {
+function setSecondQuestion() {
     secondQuestion.textContent = "The Condition in an if / else statement is";
     question2.textContent = "enclosed within _______.";
     var button1 = document.querySelector("#button1")
@@ -122,10 +162,10 @@ function setThirdQuestion () {
     var button2 = document.querySelector("#button2")
     var button3 = document.querySelector("#button3")
     var button4 = document.querySelector("#button4")
-    button1.textContent = "numbers and strings";
-    button2.textContent = "other arrays";
-    button3.textContent = "booleans";
-    button4.textContent = "all of the above";
+    button1.textContent = "1. numbers and strings";
+    button2.textContent = "2. other arrays";
+    button3.textContent = "3. booleans";
+    button4.textContent = "4. all of the above";
     document.querySelector("#button1").addEventListener("click", checkAnswer);
     document.querySelector("#button2").addEventListener("click", checkAnswer);
     document.querySelector("#button3").addEventListener("click", checkAnswer);
@@ -145,10 +185,10 @@ function setFourthQuestion () {
     var button2 = document.querySelector("#button2")
     var button3 = document.querySelector("#button3")
     var button4 = document.querySelector("#button4")
-    button1.textContent = "commas";
-    button2.textContent = "curly brackets";
-    button3.textContent = "quotes";
-    button4.textContent = "parentheses";
+    button1.textContent = "1. commas";
+    button2.textContent = "2. curly brackets";
+    button3.textContent = "3. quotes";
+    button4.textContent = "4. parentheses";
     document.querySelector("#button1").addEventListener("click", checkAnswer);
     document.querySelector("#button2").addEventListener("click", checkAnswer);
     document.querySelector("#button3").addEventListener("click", checkAnswer);
@@ -168,10 +208,10 @@ function setFifthQuestion () {
     var button2 = document.querySelector("#button2")
     var button3 = document.querySelector("#button3")
     var button4 = document.querySelector("#button4")
-    button1.textContent = "Javascript";
-    button2.textContent = "Terminal/ Bash";
-    button3.textContent = "for loops";
-    button4.textContent = "console.log";
+    button1.textContent = "1. Javascript";
+    button2.textContent = "2. Terminal/ Bash";
+    button3.textContent = "3. for loops";
+    button4.textContent = "4. console.log";
     document.querySelector("#button1").addEventListener("click", checkAnswer);
     document.querySelector("#button2").addEventListener("click", checkAnswer);
     document.querySelector("#button3").addEventListener("click", checkAnswer);
@@ -183,6 +223,78 @@ function setFifthQuestion () {
 
 }
 
+
+function submit() {
+    wordBlank.classList.add('hide');
+    endScreen.classList.add('hide');
+    finalScore.classList.add('hide');
+    enterInitials.classList.add('hide');
+    document.getElementById('text').style.display = 'none';
+    document.getElementById('button').style.display = 'none';
+    enterHighScore.textContent = "Highscores"; 
+    renderScoreList();
+    storedScores();
+    
+    
+}
+
+ function renderScoreList() {
+
+     scoreList.innerHTML = "";
+     scoreCount.textContent = scores.length;
+
+
+     for (var i = 0; i < scores; i++) {
+         var score = scores[i];
+
+         var li = document.createElement("li");
+         li.textContent = score;
+         li.setAttribute("data-index", i);
+
+         scoreList.appendChild(li);
+
+
+     }
+ }
+
+ function init() {
+     var storedScore = JSON.parse(localStorage.getItem("scores"));
+     if (storedScore !== null) {
+         scores = storedScore;
+     }
+
+
+
+ }
+
+ function storedScores() {
+     localStorage.setItem("scores", JSON.stringify(scores));
+
+
+     scoreForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+   
+        var scoreText = userInitials.value.trim();
+   
+        if (scoreText === "") {
+            return;
+        }
+   
+   
+   scores.push(scoreText);
+  // userInitials.value = "";
+   
+   
+   
+    });
+
+
+
+
+}
+
+
+
 // Add function to check answer when an option is clicked
 function checkAnswer (event) {
     var choice = event.target.dataset.correct
@@ -190,9 +302,6 @@ function checkAnswer (event) {
     if (choice != "true") {
         timerCount = timerCount - 10;
         timerElement.textContent = timerCount;
-      //  var elem = document.createElement("hr");
-      //  elem.setAttribute("width", "100px");
-       // document.body.appendChild(elem);
         wordBlank.textContent = "Wrong!";
 
 
@@ -202,42 +311,68 @@ function checkAnswer (event) {
         wordBlank.textContent = "Correct!";
     }
     // add choice to the correct answer div
-    questionCounter++;
-    if (questionCounter === 1) {
+    Counter++;
+    if (Counter === 1) {
         firstQuestion.classList.add('hide');
         question1.classList.add('hide');
         setSecondQuestion();
     }
-    else if (questionCounter === 2) {
+    else if (Counter === 2) {
+        // Hide last question, call the next question
         secondQuestion.classList.add('hide');
         question2.classList.add('hide');
         setThirdQuestion();
 
     }
 
-    else if (questionCounter === 3) {
+    else if (Counter === 3) {
+        // Hide last question, call the next question
         thirdQuestion.classList.add('hide');
         question3.classList.add('hide');
         setFourthQuestion();
     }
 
-    else if (questionCounter === 4) {
+    else if (Counter === 4) {
+        // Hide last question, call the next question
         fourthQuestion.classList.add('hide');
         question4.classList.add('hide');
         setFifthQuestion();
     }
 
-
-    else { 
-       // winGame();
+    else if (Counter === 5) {
+        passQuiz();
+    }
+    
+   
+    else if (Counter === 6) {
+        submit();
 
     }
+    else {
+        init()
+    }
+
+    //  else if (Counter === 7) {
+    //      renderScoreList();
+
+
+
+    //  }
+
 
 
 }
+    
 
 
-startButton.addEventListener("click", startGame)
+    
+    
+console.log(scores);
+
+
+submitBtn.addEventListener("click", submit)
+
+startButton.addEventListener("click", startQuiz)
 
 
 /* 

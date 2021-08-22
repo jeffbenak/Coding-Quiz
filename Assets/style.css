@@ -27,8 +27,8 @@ p {
 .start-button {
     position: absolute;
     right: 48%;
-    top: 23%;
-    background: radial-gradient(circle, rgb(119, 190, 231) 0%, rgba(105, 124, 231, 0.954) 100%);
+    top: 24%;
+    background: radial-gradient(circle, rgb(99, 226, 222) 0%, rgba(33, 102, 102, 0.954) 100%);
     color: rgb(0, 0, 0);
 
 }
@@ -37,12 +37,11 @@ p {
     padding-left: 527px;
     font-size: 30px;
     font-weight: bold;
-    line-height: 0px;
 }
 #question2 {
     font-size: 30px;
+    margin-top: -28px;
     font-weight: bold;
-    line-height: 5px;
     padding-left: 527px;
 }
 
@@ -113,13 +112,21 @@ p {
     display: none;
 }
 
+
 .answers {
     display: block; 
     margin: 5px;
     text-align: center;
     line-height: 16px;
     margin-left: 530px;
-    background-color: rgb(146, 175, 233);
+    background: radial-gradient(circle, rgb(99, 226, 222) 0%, rgba(33, 102, 102, 0.954) 100%);
+}
+
+.endscreen {
+    padding-left: 530px;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: -100px;
 }
 
 button:hover {
@@ -131,4 +138,43 @@ button:hover {
     padding-left: 532px;
     font-style: italic;
     color: rgb(52, 113, 138);
+    margin-top: 150px;
+}
+
+#finalscore {
+    padding-left: 532px;
+    margin-top: 25px;
+}
+#button {
+    margin-left: 0px;
+    margin-top: 25px;
+}
+
+#text {
+    margin-left: 628px;
+}
+
+.initials {
+    margin-left: 533px;
+    margin-top: -19px;
+    font-size: 17px;
+}
+
+.highscores {
+    margin-left: 663px;
+    margin-top: -100px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.userscore {
+    margin-left: 663px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: rgb(171, 194, 218);
+    width: 15%;
+}
+li {
+    list-style-type: none;
 }
