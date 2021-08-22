@@ -25,7 +25,9 @@ var displayScore = document.querySelector(".userscore");
 var userInitials = document.querySelector("#text");
 var scoreList = document.querySelector("#highscorelist");
 var scoreForm = document.querySelector("#score-form");
-var scoreCount = document.querySelector("#score-count");
+var clearScores = document.querySelector("#clearscores");
+var returnToStart = document.querySelector("#return");
+var scores = document.querySelector("#scores");
 
 
 
@@ -35,7 +37,12 @@ var Counter = 0;
 var timeLeft; 
 var scores = [];
 
+var latestScore;
+
+
 window.onload = function() {
+    document.getElementById('return').style.display = 'none';
+    document.getElementById('clearscores').style.display = 'none';
     document.getElementById('button').style.display = 'none';
     document.getElementById('text').style.display = 'none';
     document.getElementById('button1').style.display = 'none';
@@ -66,6 +73,7 @@ function startQuiz() {
 
 function setScore() {
     var setScore = timerCount;
+    latestScore = setScore;
     finalScore.textContent = "Your final score is " + setScore + ".";
     enterInitials.textContent = "Enter Initials:";
     document.getElementById('button').style.display = 'inline';
@@ -78,13 +86,13 @@ function passQuiz() {
     fifthQuestion.classList.add('hide');
     question5.classList.add('hide');
     question5b.classList.add('hide');
-    button1.style.visibility = 'hidden';
-    button2.style.visibility = 'hidden';
-    button3.style.visibility = 'hidden';
-    button4.style.visibility = 'hidden';
+    button1.style.display = 'none';
+    button2.style.display = 'none';
+    button3.style.display = 'none';
+    button4.style.display = 'none';
     endScreen.textContent = "All done!";
     clearInterval(timer);
-    setScore();
+    setScore(); 
 }
 
 
@@ -98,7 +106,7 @@ function startTimer() {
         timerCount--;
         timerElement.textContent = timerCount;
         if (timerCount <= 0) {
-            clearInterval(timer)
+            clearInterval(timer);
         }
         
     }, 1000);   
@@ -232,8 +240,11 @@ function submit() {
     document.getElementById('text').style.display = 'none';
     document.getElementById('button').style.display = 'none';
     enterHighScore.textContent = "Highscores"; 
-    renderScoreList();
     storedScores();
+    scores.push(userInitials.value + "-" + latestScore);
+    document.getElementById('clearscores').style.display = 'inline';
+    document.getElementById('return').style.display = 'inline';
+    renderScoreList();
     
     
 }
@@ -241,10 +252,9 @@ function submit() {
  function renderScoreList() {
 
      scoreList.innerHTML = "";
-     scoreCount.textContent = scores.length;
 
 
-     for (var i = 0; i < scores; i++) {
+     for (var i = 0; i < scores.length; i++) {
          var score = scores[i];
 
          var li = document.createElement("li");
@@ -252,6 +262,10 @@ function submit() {
          li.setAttribute("data-index", i);
 
          scoreList.appendChild(li);
+
+    
+
+        
 
 
      }
@@ -282,11 +296,31 @@ function submit() {
    
    
    scores.push(scoreText);
-  // userInitials.value = "";
+ 
    
    
    
     });
+
+
+
+
+}
+
+// Clear button to clear all scores and re render the list
+function clearallScores() {
+    scores = [];
+    renderScoreList();
+}
+// Return button takes user back to the start
+function returntostart() {
+    scoreList.textContent = "";
+    document.getElementById('return').style.display = 'none';
+    document.getElementById('clearscores').style.display = 'none';
+    enterHighScore.textContent = "";
+    headerTitle.classList.remove('hide');
+    startButton.classList.remove('hide');
+    paragraphElement.classList.remove('hide');
 
 
 
@@ -299,7 +333,9 @@ function submit() {
 function checkAnswer (event) {
     var choice = event.target.dataset.correct
     console.log(choice);
+    // If statement to display correct or wrong message depending on answer choice
     if (choice != "true") {
+        // Deducts ten seconds from the timer if the wrong option is chosen
         timerCount = timerCount - 10;
         timerElement.textContent = timerCount;
         wordBlank.textContent = "Wrong!";
@@ -308,10 +344,12 @@ function checkAnswer (event) {
 
     }
     else if (choice === "true") {
+        // Displays a correct message if correct
         wordBlank.textContent = "Correct!";
     }
     // add choice to the correct answer div
     Counter++;
+    // If statement to run through each question, up until the highscore list page
     if (Counter === 1) {
         firstQuestion.classList.add('hide');
         question1.classList.add('hide');
@@ -352,12 +390,7 @@ function checkAnswer (event) {
         init()
     }
 
-    //  else if (Counter === 7) {
-    //      renderScoreList();
 
-
-
-    //  }
 
 
 
@@ -366,8 +399,10 @@ function checkAnswer (event) {
 
 
     
-    
-console.log(scores);
+    // add click events for each button to call the function when clicked
+
+clearScores.addEventListener("click", clearallScores)
+returnToStart.addEventListener("click", returntostart)
 
 
 submitBtn.addEventListener("click", submit)
@@ -375,10 +410,3 @@ submitBtn.addEventListener("click", submit)
 startButton.addEventListener("click", startQuiz)
 
 
-/* 
-Make startGame function, start timer when game starts. 
-When game is started, go to the first question.
-
-
-
-*/
