@@ -12,4 +12,11 @@
 - You will be alerted whether you got the question right or wrong, and each time you get a question wrong ten seconds will be deducted off of the timer.
 
 ## Screenshots
+![Screenshot (118)](https://user-images.githubusercontent.com/87049684/137399879-821bf945-6c0a-4a08-8f22-17709b11722a.png)
+![Screenshot (119)](https://user-images.githubusercontent.com/87049684/137399887-fb43f7dc-5847-4c19-86ed-a5b038afd69f.png)
+![Screenshot (120)](https://user-images.githubusercontent.com/87049684/137399893-dc5131bc-7d03-4cf5-8a0c-0720ca74b94c.png)
+![Screenshot (121)](https://user-images.githubusercontent.com/87049684/137399900-ada9d4da-2728-47ba-a713-535b1baad46a.png)
+![Screenshot (122)](https://user-images.githubusercontent.com/87049684/137399910-7ef78ce6-bb4f-45d6-bfaf-f4cfb8be68d9.png)
 
+## Deployment Link 
+https://jeffbenak.github.io/Coding-Quiz/
